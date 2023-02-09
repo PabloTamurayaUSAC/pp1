@@ -1,0 +1,465 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.practica1;
+import java.util.Scanner;
+import java.util.Date;
+/**
+ *
+ * @author DELL
+ */
+public class Practica1 {
+
+    public static void main(String[] args) {
+        Scanner leer = new Scanner(System.in);
+        //Variables
+        String nombre;
+        String contraseña;
+        Boolean validacion= false;
+        Integer opcion=0;
+        do {            
+            System.out.println("Super 25: Siempre A Su Servicio! ");
+            System.out.println(" ");
+            System.out.println("Ingrese su usuario");
+            nombre = leer.nextLine();
+            System.out.println("Ingrese su contrasñea");
+            contraseña = leer.nextLine();
+            
+            if(nombre.equals("cajero_202200151") && contraseña.equals("ipc1_202200151")){
+                validacion= true;
+            }else{
+                validacion= false;
+                System.out.println("Contraseña o Usuario Incorrectos, ingrese nuevamente");
+            }
+            
+        } while (!validacion);
+        /*Datos para agregar productos y cupones*/
+        String Nombre[];
+                Nombre = new String[20];
+                
+                Float Precio[];
+                Precio = new Float[20];
+        String Cupon[];
+                Cupon = new String[20];
+                
+                Float Descuento[];
+                Descuento = new Float[20];
+        int i = 0, j = 0,k = 0,CANTI=0,valores=0;
+        /*Datos para el reporte*/
+        
+        String ReporteProducto[];
+                ReporteProducto = new String[20];
+                
+                Float Cantidades[][];
+                Cantidades = new Float[20][4];
+        float canti=CANTI;
+        while(valores<20){
+            Cantidades[valores][0]=canti;
+            Cantidades[valores][1]=canti;
+            Cantidades[valores][2]=canti;
+            Cantidades[valores][3]=canti;
+            valores++;
+        }
+            
+                
+        int seguir = 1;
+        while(seguir==1){
+        do {            
+        menu();
+        opcion= leer.nextInt();
+        } while (opcion<0 || opcion>5);
+        int repetir = 1;        
+        System.out.println("Opcion A Realizar: "+opcion);
+        
+        switch (opcion) {
+            case 1 -> {
+                //productos
+                System.out.println("Agregar Producto ");
+                
+                
+                while(repetir==1){   
+                    System.out.println("Ingrese el Nombre del Producto");
+                    Nombre[i]= leer.next();
+                    int validando=0;
+                        if(i!=0){
+                    while(validando==0){
+                    for(int h=0;h<i;h++){
+                        if(Nombre[i].equalsIgnoreCase(Nombre[h])){
+                            System.out.println(" ");
+                            System.out.println("Producto ya Ingresado ");
+                            System.out.println("Ingrese otro Nombre para el Producto ");
+                            Nombre[i]= leer.next();
+                        }else{
+                            validando=1;
+                        }
+                    }
+                    }
+                    }
+                    System.out.println(" ");
+                    System.out.println("Ingrese el Precio para "+Nombre[i]);
+                    Precio[i]= leer.nextFloat();
+                    
+                    
+                    while(Precio[i]<=0){
+                        
+                        System.out.println("Ingrese un Precio Más Alto");
+                        Precio[i]= leer.nextFloat();
+                    }
+                    System.out.println(" ");
+                    System.out.println("El Producto Se Ha Guardado Correctamente");
+                    System.out.println("Producto "+(i+1)+": "+Nombre[i]);
+                    System.out.println("Precio: Q"+Precio[i]);
+                    
+                    
+                    
+                    
+                    /*Datos bases para reporte*/
+                    ReporteProducto[i]=Nombre[i];
+                    i++;
+                    if(i<20){
+                    System.out.println(" ");
+                    System.out.println("Presione 1 para Ingresar otro Producto");
+                    System.out.println("Presione 2 para Regresar al Menú");
+                    repetir = leer.nextInt();
+                    }else{
+                        repetir=2;
+                    }
+                    }
+                }
+                
+                
+            case 2 -> {
+                //cupones
+                while(repetir==1){
+                    System.out.println("Ingrese el Nombre del Cupón");
+                    Cupon[j]= leer.next();
+                    int validancia=0;
+                        if(j != 0){
+                    while(validancia==0){
+                    for(int h=0;h<j;h++){
+                        if(Cupon[j].equalsIgnoreCase(Cupon[h])){
+                            System.out.println(" ");
+                            System.out.println("Cupón ya Ingresado ");
+                            System.out.println("Ingrese otro Nombre para el Cupón ");
+                            Cupon[j]= leer.next();
+                        }else{
+                            validancia=1;
+                        }
+                    }
+                    }
+                    }
+                    int valido=0;
+                    while(valido==0){
+                        if(Cupon[j].length()!=4){
+                        System.out.println("El Nombre Debe ser de 4 Dígitos");
+                        System.out.println("Ingrese Otro Nombre para el Cupón");
+                        
+                    Cupon[j]= leer.next();    
+                        }else{
+                            valido=1;
+                        }
+                    }
+                   
+                
+                    System.out.println("Ingrese el Descuento para "+Cupon[j]);
+                    Descuento[j]= leer.nextFloat();
+                    
+                    
+                    while(Descuento[j]<=0 || Descuento[j]>=100){
+                    
+                       System.out.println("Debe ser Mayor a 0 y Menor a 100");
+                    Descuento[j]= leer.nextFloat(); 
+                       
+                    
+                       
+                    
+                    
+                    }
+                    System.out.println(" ");
+                    System.out.println("El Cupón Ha Sido Registrado Correctamente");
+                    System.out.println("Cupón: "+Cupon[j]);
+                    System.out.println("Descuento: "+Descuento[j]+"%");
+                    
+                    
+                    
+                    
+                    
+                    
+                    j++;
+                    if(j<20){
+                    System.out.println(" ");
+                    System.out.println("Presione 1 para Ingresar otro Cupón");
+                    System.out.println("Presione 2 para Regresar al Menú");
+                    repetir = leer.nextInt();
+                    }else{
+                        repetir=2;                    }
+                    }
+                }
+            case 3 -> {
+                
+                //ventas
+                while(repetir==1){
+                int y=0;
+                String ProductoFac[];
+                ProductoFac = new String[20];
+                
+                Float ProductoTot[][];
+                ProductoTot = new Float[20][3];
+                int cero=0;
+                int colocacion=0;
+                float pipo=cero;
+                float subtotal=pipo;
+                float calculo=pipo;
+                float total=pipo;
+                
+                while(colocacion<20){
+                    ProductoTot[colocacion][0]=canti;
+                    ProductoTot[colocacion][1]=canti;
+                    ProductoTot[colocacion][2]=canti;
+                    
+                    colocacion++;
+                    }
+                
+                String cuponuso="NINGUNO";
+                float valordescuento=pipo;
+            
+                String Cliente =null;
+                String Nit = null;
+                int ComprobarNit;
+                
+                System.out.println(" ");
+                System.out.println("Posee Nit? 1.Si  2.No");
+                ComprobarNit = leer.nextInt();
+                while(ComprobarNit==1){
+                    System.out.println("Ingrese el NIT ");
+                    Nit = leer.next();
+                    if(8<=Nit.length() && Nit.length()<=9){
+                    System.out.println("Ingrese El Nombre del Cliente (Barra Baja por Epacios) ");
+                    Cliente = leer.next();
+                    ComprobarNit = 3;
+                    }else{
+                    System.out.println("NIT incorrecto, Ingresar de Nuevo? ");
+                    System.out.println("1. Si   2. No ");
+                    ComprobarNit = leer.nextInt();
+                    }
+                }
+                if(ComprobarNit==2){
+                Cliente="C/F";
+                Nit="C/F";
+                }
+                System.out.println(" ");
+                System.out.println("NIT: "+Nit);
+                System.out.println("Cliente: "+Cliente);
+               
+                int meterproducto=1;
+                int Seleccionado;
+                int unidades;
+                while(meterproducto==1){
+                System.out.println(" ");
+                System.out.println("En Base a Esta Lista, Seleccione el Producto a Comprar ");
+                System.out.println(" ");
+                /*Listado de Productos para comprar*/
+                for(int m=0;m<Nombre.length;m++){
+                    if(Nombre[m]!=null){
+                    System.out.println("Producto "+(m+1)+": "+Nombre[m]+" a Precio de Q"+Precio[m]);   
+                    }
+                }
+                System.out.println("Escriba el Número del Producto ");
+                Seleccionado = leer.nextInt();
+                System.out.println(" ");
+                System.out.println("Cantidad del Producto "+Nombre[Seleccionado-1]);
+                unidades = leer.nextInt();
+                float tot=unidades;
+                System.out.println(" ");
+                ProductoFac[y]=Nombre[Seleccionado-1];
+                ProductoTot[y][0]=Precio[Seleccionado-1];
+                ProductoTot[y][1]=tot;
+                ProductoTot[y][2]=Precio[Seleccionado-1]*tot;
+                /*Vista previa de la Compra*/
+                System.out.println("  Producto      Precio Unidad     Cantidad      Total del Producto");
+                for(int m=0;m<Nombre.length;m++){
+                    if(ProductoFac[m]!=null){
+                    
+                    System.out.println("   "+ProductoFac[m]+"           "+ProductoTot[m][0]+"                "+ProductoTot[m][1]+"           "+ProductoTot[m][2]);   
+                    }
+                }
+                y++;
+                if(y<20){
+                System.out.println(" ");
+                System.out.println("Agregar otro Producto a la Compra? ");
+                System.out.println("1. Si    2. No ");
+                meterproducto = leer.nextInt();
+                }else{
+                    meterproducto=2;
+                }
+                }
+                
+                /*Meter datos al reporte*/
+                //int fog=0;
+                
+                    //while(fog<=19){
+                for(int fog=0; fog<Cantidades.length;fog++){
+                for(int m=0; m<ProductoFac.length;m++){
+                    if(ReporteProducto[m]==ProductoFac[fog]){
+                        Cantidades[m][0]=Cantidades[m][1]+ProductoTot[fog][1];
+                        Cantidades[m][1]=Cantidades[m][0];
+                        Cantidades[m][2]=Cantidades[m][3]+ProductoTot[fog][2];
+                        Cantidades[m][3]=Cantidades[m][2];
+                        //fog++;
+                                }
+                }
+                }
+                /*Calcular Subtotal y pedir Cupón*/
+                int sumatoria=0;
+                while(sumatoria<20){
+                    subtotal=calculo+ProductoTot[sumatoria][2];
+                    calculo=subtotal;
+                    sumatoria++;
+                }
+                System.out.println(" ");
+                System.out.println("Subtotal: Q"+subtotal);
+                System.out.println(" ");
+                System.out.println("Desea Ingresar Cupón?");
+                int cuponizar=1;
+                System.out.println("1. Si     2. No ");
+                cuponizar = leer.nextInt();
+                
+                    
+                for(int m=0;m<Cupon.length;m++){
+                while(cuponizar==1){
+                    System.out.println(" ");
+                    System.out.println("Ingrese el Nombre del Cupón ");
+                    cuponuso = leer.next();    
+                        if(cuponuso==Cupon[m]){
+                            cuponuso=Cupon[m];
+                            valordescuento=Descuento[m];
+                            System.out.println("Cupón Aceptado: "+cuponuso);
+                            System.out.println("Descuento del Cupón: "+valordescuento+"%");
+                            System.out.println(" ");
+                            cuponizar=0;
+                        }else{
+                            System.out.println("Cupón Incorrecto. Probar Otro? ");
+                            System.out.println("1. Si    2. No ");
+                            Nit="NINGUNO";
+                            cuponizar = leer.nextInt();
+                        }
+                    }
+                    System.out.println(" ");
+                }
+                /*Total*/
+                total=(subtotal+(subtotal*valordescuento/100));
+                System.out.println("Total: Q"+total);
+                System.out.println(" ");
+                Date fecha= new Date();
+                /*Factura*/
+                System.out.println("                         Super 25: Siempre A Su Servicio! ");
+                System.out.println("Nombre del Cajero: Pablo_Giron");
+                System.out.println("Nombre del Cliente: "+Cliente);
+                System.out.println("NIT del Cliente: "+Nit);
+                System.out.println("Fecha: "+fecha);
+                System.out.println(" ");
+                for(int m=0;m<Nombre.length;m++){
+                    if(Nombre[m]!=null){
+                    System.out.println("  Producto      Precio Unidad     Cantidad      Total del Producto");
+                    System.out.println(ProductoFac[m]+"       "+ProductoTot[m][0]+"       "+ProductoTot[m][1]+"       "+ProductoTot[m][2]);   
+                    }
+                }
+                System.out.println(" ");
+                System.out.println("Subtotal:                Q"+subtotal);
+                System.out.println("Cupón:                    "+cuponuso);
+                System.out.println("Descuento:              "+valordescuento+"%");
+                System.out.println("Total:                   Q"+total );
+                
+                
+                
+                System.out.println(" ");
+                    System.out.println("Presione 1 para Realizar otra Venta");
+                    System.out.println("Presione 2 para Regresar al Menú");
+                    repetir = leer.nextInt();
+                }
+                }
+            case 4 -> {
+                //reporte
+                while(repetir==1){
+                    String valor1=null;
+                    float valor2=canti;
+                    float valor3=canti;
+                    float valor4=canti;
+                    float valor5=canti;
+                /*Ciclo para el Algoritmo de Burbuja*/    
+                int intercambios=0;    
+                    while(intercambios<100){
+                        for(int m=0;(m+1)<ReporteProducto.length;m++){
+                            if(Cantidades[m][1]<Cantidades[m+1][1]){
+                                
+                                valor1 = ReporteProducto[m+1];
+                                ReporteProducto[m+1] = ReporteProducto[m];
+                                ReporteProducto[m] = valor1;
+                                
+                                valor2 = Cantidades[m+1][0];
+                                Cantidades[m+1][0] = Cantidades[m][0];
+                                Cantidades[m][0] = valor2;
+                                
+                                valor3 = Cantidades[m+1][1];
+                                Cantidades[m+1][1] = Cantidades[m][1];
+                                Cantidades[m][1] = valor3;
+                                
+                                valor4 = Cantidades[m+1][2];
+                                Cantidades[m+1][2] = Cantidades[m][2];
+                                Cantidades[m][2] = valor4;
+                                
+                                valor5 = Cantidades[m+1][3];
+                                Cantidades[m+1][3] = Cantidades[m][3];
+                                Cantidades[m][3] = valor5;
+                        intercambios++;    
+                        }else
+                        intercambios++;     
+                        
+                        }
+                    }
+                    for(int m=0;m<ReporteProducto.length;m++){
+                        if(Cantidades[m][1]!=null && Cantidades[m][1]!=0){
+                            System.out.println("Producto: "+ReporteProducto[m]+" vendió "+Cantidades[m][1]+" unidades, vendiendo Q"+Cantidades[m][3]);
+                            
+                        }
+                        
+                    }
+                    System.out.println(" ");
+                    System.out.println("Presione 1 para Comprobar Reporte Un Vez Más");
+                    System.out.println("Presione 2 para Regresar al Menú");
+                    repetir = leer.nextInt();
+                }
+                }
+            case 5 -> {
+                System.out.println(" ");
+                System.out.println("Super 25 Le Desea Un Buen Día!");
+                System.exit(0);
+                    //pasa esto
+                }
+            default -> {
+                System.out.println(" ");
+                System.out.println("Valor Fuera de las Opciones");
+                System.out.println(" ");
+                }
+        }
+        
+        }
+        
+        
+        
+        
+    
+        System.out.println(" ");
+    }
+    public static void menu(){
+        System.out.println("Bienvenido a Super 25 ");
+        System.out.println("Elija la Opción a Realizar ");
+        System.out.println("1. Agregar Productos ");
+        System.out.println("2. Agregar Cupones ");
+        System.out.println("3. Realizar Ventas ");
+        System.out.println("4. Comprobar Reporte de Ventas ");
+        System.out.println("5. Cerrar Sesión ");
+        
+    }
+}
